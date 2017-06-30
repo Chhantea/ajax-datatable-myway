@@ -1,5 +1,5 @@
 class DemoMain
-  delegate :params, :h, :link_to, :number_to_currency, to: :@view
+  delegate :params,:truncate, :h, :link_to, :number_to_currency, to: :@view 
 
   def initialize(view)
     @view = view
@@ -19,9 +19,9 @@ private
   def data
     some.map do |s|
       [
-       (s.name),
+       link_to(s.name,{:action => 'index'}),
        (s.add),
-       link_to("<i class='fa fa-eye' aria-hidden='true' style='margin-right:5px'></i>View".html_safe, {:controller => 'main', :area_id => s.id, method: :get}, :class => 'btn btn-primary')
+       link_to(truncate(s.name, length: 30),  {:action => "door",:id =>s.id, method: :get, remote: true})
       ]
     end
   end
@@ -31,7 +31,7 @@ private
   end
 
   def fetch_some
-    some = Something.order("#{sort_column} #{sort_direction}")
+    some = Something.all
     some = some.page(page).per_page(per_page)
     if params[:sSearch].present?
       some = some.where("name like :search or category like :search", search: "%#{params[:sSearch]}%")
@@ -41,18 +41,18 @@ private
 
   def page
     params[:iDisplayStart].to_i/per_page + 1
-  end
+   end
 
   def per_page
-    params[:iDisplayLength].to_i > 0 ? params[:iDisplayLength].to_i : 10
-  end
+     params[:iDisplayLength].to_i > 0 ? params[:iDisplayLength].to_i : 10
+   end
 
   def sort_column
-    columns = %w[name category released_on price]
-    columns[params[:iSortCol_0].to_i]
+     columns = %w[name add]
+     columns[params[:iSortCol_0].to_i]
   end
 
   def sort_direction
-    params[:sSortDir_0] == "desc" ? "desc" : "asc"
-  end
+     params[:sSortDir_0] == "desc" ? "desc" : "asc"
+   end
 end

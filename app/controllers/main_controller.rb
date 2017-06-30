@@ -5,4 +5,8 @@ class MainController < ApplicationController
   		format.json { render json: DemoMain.new(view_context) }
   	end
   end
+   def door
+   	@s = Something.find(params[:id])
+   	
+   end
 end

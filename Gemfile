@@ -53,5 +53,6 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # add gem 
 gem 'jquery-datatables-rails', '~> 3.4.0'
-gem 'will_paginate'
-gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'
+gem 'will_paginate', '~> 3.1.0'
+#gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'
+gem 'bootstrap', '~>4.0.0alpha3.1'

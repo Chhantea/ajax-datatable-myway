@@ -3,15 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).on 'turbolinks:load',->
   $('#asd').dataTable
-    'aaSorting': [ [
-      1
-      'asc'
-    ] ]
-    'bPaginate': true
-    'bLengthChange': true
-    'bFilter': true
-    'bInfo': true
-    'bAutoWidth': false
+    sPaginationType: "full_numbers"
     'bProcessing' : true
     'bServerSide' : true
     'sAjaxSource' : $('#asd').data('source')
